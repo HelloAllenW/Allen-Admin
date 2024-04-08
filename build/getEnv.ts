@@ -13,13 +13,16 @@ export function isTestFn(mode: string): boolean {
 }
 
 /**
- * Whether to generate package preview
+ * Whether to generate package preview 包分析文件
  */
 export function isReportMode(): boolean {
   return process.env.VITE_REPORT === "true";
 }
 
-// Read all environment variable configuration files to process.env
+/**
+ * Read all environment variable configuration files to process.env
+ * 将process.env对象的value中的Number、Boolean、JSON类型进行还原（默认都是字符串）
+ */
 export function wrapperEnv(envConf: Recordable): ViteEnv {
   const ret: any = {};
 

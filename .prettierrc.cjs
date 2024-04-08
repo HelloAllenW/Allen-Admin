@@ -1,3 +1,5 @@
+// 使用格式化快捷键shift + Alt + F时，可以自动按照我们制定的Prettier规范格式化代码。
+// prettier 先会去项目文件中找是否有 .prettierrc.js 或 .prettierrc 的文件，如果有就使用 .prettierrc.js 或 .prettierrc 文件中的格式化规则，如果没有则查找是否有.editorconfig，还是没有就使用 settings.json 的规则。
 // @see: https://www.prettier.cn
 
 module.exports = {

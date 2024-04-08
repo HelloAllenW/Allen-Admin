@@ -1,4 +1,6 @@
+// 工作区settings.json的配置。当我们保存某个文件时，会自动对该文件进行ESLint检查，并且自动修复一些问题。
 {
+  // 保存即格式化
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": "explicit"
@@ -7,6 +9,7 @@
   "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass", "html"],
   "files.eol": "\n",
   "typescript.tsdk": "node_modules/typescript/lib",
+  // 将 prettier 设置为默认格式化工具
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

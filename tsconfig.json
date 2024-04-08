@@ -1,34 +1,45 @@
+/** 用于指定编译 TypeScript 代码时的编译选项和编译目标等信息。。
+ */
 {
   "compilerOptions": {
+    // 指定要使用的默认库
     "target": "ESNext",
     "useDefineForClassFields": true,
+    // 生成代码的模板标准
     "module": "ESNext",
+    // 模块解析策略，ts默认用node的解析策略，即相对的方式导入
     "moduleResolution": "Node",
+    // 加载的声明文件包
     "types": ["vite/client", "element-plus/global"],
+    // 开启所有严格的类型检查
+    "strict": true,
 
-    /* Strict Type-Checking Options */
-    "strict": true /* Enable all strict type-checking options. */,
-    // "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
-    // "strictNullChecks": true,              /* Enable strict null checks. */
-    // "strictFunctionTypes": true,           /* Enable strict checking of function types. */
-    // "strictBindCallApply": true,           /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
-    // "strictPropertyInitialization": true,  /* Enable strict checking of property initialization in classes. */
-    // "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
-    // "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
+    // "noImplicitAny": true,                 // 不允许隐式的any类型
+    // "strictNullChecks": true,              // 不允许把null、undefined赋值给其他类型的变量
+    // "strictFunctionTypes": true,           // 不允许函数参数双向协变
+    // "strictBindCallApply": true,           // 严格的bind/call/apply检查
+    // "strictPropertyInitialization": true,  // 类的实例属性必须初始化
+    // "noImplicitThis": true,                // 不允许this有隐式的any类型
+    // "alwaysStrict": true,                  // 在代码中注入'use strict'
 
     "jsx": "preserve",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    // 允许export=导出，由import from 导入
     "esModuleInterop": true,
+    // TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,
+    // 如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入"ES2019.Array"
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "noEmit": true,
     "baseUrl": "./",
+    // 解决别名导致vscode无法跳转文件的问题
     "paths": {
       "@": ["src"],
       "@/*": ["src/*"]
     }
   },
+  // 显式声明包含的文件
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
@@ -38,5 +49,6 @@
     "build/**/*.d.ts",
     "vite.config.ts"
   ],
+  // 与开发无关的文件(非源码)可以让 IDE 全部在编译时排除掉，以提高 IDE 性能
   "exclude": ["node_modules", "dist", "**/*.js"]
 }

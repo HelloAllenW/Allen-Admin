@@ -1,3 +1,4 @@
+# 可以覆盖编辑器的默认配置，是为了抹平不同IDE的代码格式差异而产生的
 # @see: http://editorconfig.org
 
 root = true

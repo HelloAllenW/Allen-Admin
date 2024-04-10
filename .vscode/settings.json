@@ -3,7 +3,8 @@
   // 保存即格式化
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.stylelint": "explicit"
+    // 每次保存文件时，这个配置项意味着对于stylelint的问题，你需要明确地执行修复操作。会严重降低保存效率。
+    // "source.fixAll.stylelint": "explicit"
   },
   "stylelint.enable": true,
   "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass", "html"],

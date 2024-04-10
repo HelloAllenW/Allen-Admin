@@ -10,7 +10,7 @@
     >
       <!-- 表格 header 按钮 -->
       <template #tableHeader="scope">
-        <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
+        <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')"> 新增用户 </el-button>
         <el-button v-auth="'batchAdd'" type="primary" :icon="Upload" plain @click="batchAdd">批量添加用户</el-button>
         <el-button v-auth="'export'" type="primary" :icon="Download" plain @click="downloadFile">导出用户数据</el-button>
         <el-button type="primary" plain @click="toDetail">To 子集详情页面</el-button>
@@ -18,10 +18,12 @@
           批量删除用户
         </el-button>
       </template>
+
       <!-- Expand -->
       <template #expand="scope">
         {{ scope.row }}
       </template>
+
       <!-- usernameHeader -->
       <template #usernameHeader="scope">
         <el-button type="primary" @click="ElMessage.success('我是通过作用域插槽渲染的表头')">
@@ -34,6 +36,7 @@
           {{ scope.row.createTime }}
         </el-button>
       </template>
+
       <!-- 表格操作 -->
       <template #operation="scope">
         <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
@@ -42,7 +45,9 @@
         <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
       </template>
     </ProTable>
+
     <UserDrawer ref="drawerRef" />
+
     <ImportExcel ref="dialogRef" />
   </div>
 </template>

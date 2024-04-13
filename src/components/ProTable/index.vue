@@ -31,6 +31,7 @@
         </slot>
       </div>
     </div>
+
     <!-- 表格主体 -->
     <el-table
       ref="tableRef"
@@ -42,6 +43,7 @@
     >
       <!-- 默认插槽 -->
       <slot />
+
       <template v-for="item in tableColumns" :key="item">
         <!-- selection || radio || index || expand || sort -->
         <el-table-column
@@ -66,6 +68,7 @@
             </el-tag>
           </template>
         </el-table-column>
+
         <!-- other -->
         <TableColumn v-if="!item.type && item.prop && item.isShow" :column="item">
           <template v-for="slot in Object.keys($slots)" #[slot]="scope">
@@ -73,10 +76,12 @@
           </template>
         </TableColumn>
       </template>
+
       <!-- 插入表格最后一行之后的插槽 -->
       <template #append>
         <slot name="append" />
       </template>
+
       <!-- 无数据 -->
       <template #empty>
         <div class="table-empty">
@@ -87,6 +92,7 @@
         </div>
       </template>
     </el-table>
+
     <!-- 分页组件 -->
     <slot name="pagination">
       <Pagination
@@ -97,6 +103,7 @@
       />
     </slot>
   </div>
+
   <!-- 列设置 -->
   <ColSetting v-if="toolButton" ref="colRef" v-model:col-setting="colSetting" />
 </template>
@@ -194,10 +201,30 @@ watch(() => props.initParam, getTableList, { deep: true });
 // 接收 columns 并设置为响应式
 const tableColumns = reactive<ColumnProps[]>(props.columns);
 
-// 扁平化 columns
+// 扁平化 columns（处理接收到的tableColumns）
 const flatColumns = computed(() => flatColumnsFunc(tableColumns));
 
+// 扁平化 columns 的方法
+const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) => {
+  columns.forEach(async col => {
+    if (col._children?.length) flatArr.push(...flatColumnsFunc(col._children));
+    flatArr.push(col);
+
+    // column 添加默认 isShow && isFilterEnum 属性值
+    col.isShow = col.isShow ?? true;
+    col.isFilterEnum = col.isFilterEnum ?? true;
+
+    // 设置 enumMap
+    await setEnumMap(col);
+  });
+  return flatArr.filter(item => !item._children?.length);
+};
+
 // 定义 enumMap 存储 enum 值（避免异步请求无法格式化单元格内容 || 无法填充搜索下拉选择）
+/**
+ * enumMap 存储的值例如：
+ * { key: "gender", value: [{genderLabel: "男", genderValue: 1}, {genderLabel: "女", genderValue: 2}] }
+ */
 const enumMap = ref(new Map<string, { [key: string]: any }[]>());
 const setEnumMap = async ({ prop, enum: enumValue }: ColumnProps) => {
   if (!enumValue) return;
@@ -216,26 +243,10 @@ const setEnumMap = async ({ prop, enum: enumValue }: ColumnProps) => {
   enumMap.value.set(prop!, data);
 };
 
-// 注入 enumMap
+// 注入 enumMap：以便在TableColumn和SearchForm中使用，而不需要重复请求。
 provide("enumMap", enumMap);
 
-// 扁平化 columns 的方法
-const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) => {
-  columns.forEach(async col => {
-    if (col._children?.length) flatArr.push(...flatColumnsFunc(col._children));
-    flatArr.push(col);
-
-    // column 添加默认 isShow && isFilterEnum 属性值
-    col.isShow = col.isShow ?? true;
-    col.isFilterEnum = col.isFilterEnum ?? true;
-
-    // 设置 enumMap
-    await setEnumMap(col);
-  });
-  return flatArr.filter(item => !item._children?.length);
-};
-
-// 过滤需要搜索的配置项 && 排序
+// 过滤需要搜索的配置项 && 排序（item中有search项的会被传到SearchForm中，作为搜索项显示）
 const searchColumns = computed(() => {
   return flatColumns.value
     ?.filter(item => item.search?.el || item.search?.render)

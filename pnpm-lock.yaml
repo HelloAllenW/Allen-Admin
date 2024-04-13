@@ -74,6 +74,9 @@ dependencies:
   vuedraggable:
     specifier: ^4.1.0
     version: 4.1.0(vue@3.3.7)
+  vxe-table:
+    specifier: ^4.5.22
+    version: 4.5.22(vue@3.3.7)
 
 devDependencies:
   '@commitlint/cli':
@@ -4124,6 +4127,10 @@ packages:
       domhandler: 5.0.3
       entities: 4.5.0
     dev: true
+
+  /dom-zindex@1.0.1:
+    resolution: {integrity: sha512-M/MERVDZ8hguvjl6MAlLWSLYLS7PzEyXaTb5gEeJ+SF+e9iUC0sdvlzqe91MMDHBoy+nqw7wKcUOrDSyvMCrRg==}
+    dev: false
 
   /dom7@3.0.0:
     resolution: {integrity: sha512-oNlcUdHsC4zb7Msx7JN3K0Nro1dzJ48knvBOnDPKJ2GV9wl1i5vydJZUSyOfrkKFDZEud/jBsTk92S/VGSAe/g==}
@@ -8764,6 +8771,16 @@ packages:
       vue: 3.3.7(typescript@5.2.2)
     dev: false
 
+  /vxe-table@4.5.22(vue@3.3.7):
+    resolution: {integrity: sha512-bUmn6KSL9FE0Dfrsw7VjJAS8tratL1OBIDVzt1djgijU6WAwyp3697POkMR9TZ4HHvV6uGDSCuGzUUXGFodvVQ==}
+    peerDependencies:
+      vue: ^3.2.28
+    dependencies:
+      dom-zindex: 1.0.1
+      vue: 3.3.7(typescript@5.2.2)
+      xe-utils: 3.5.24
+    dev: false
+
   /webidl-conversions@4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
     dev: true
@@ -9005,6 +9022,10 @@ packages:
       imurmurhash: 0.1.4
       signal-exit: 4.1.0
     dev: true
+
+  /xe-utils@3.5.24:
+    resolution: {integrity: sha512-22TRz/qaRNcPTQi2SHNU19FqHogctQvVkFu09/smPdbkwOXNS9tUZ4EwA2bJ7HFkdWtnELrxFpCt58LS2HCojA==}
+    dev: false
 
   /xml-name-validator@4.0.0:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}

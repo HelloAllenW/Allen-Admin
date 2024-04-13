@@ -158,6 +158,48 @@
             "isAffix": false,
             "isKeepAlive": true
           }
+        },
+        {
+          "path": "/proTable/useVXETable",
+          "name": "useVXETable",
+          "component": "/proTable/useVXETable/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "使用 vxeTable",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "path": "/proTable/complexVXETable",
+          "name": "complexVXETable",
+          "component": "/proTable/complexVXETable/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "复杂 vxeTable",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": true
+          }
+        },
+        {
+          "path": "/proTable/extensionTable",
+          "name": "extensionTable",
+          "component": "/proTable/extensionTable/index",
+          "meta": {
+            "icon": "Menu",
+            "title": "拓展 Table",
+            "isLink": "",
+            "isHide": false,
+            "isFull": false,
+            "isAffix": false,
+            "isKeepAlive": true
+          }
         }
       ]
     },

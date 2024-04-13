@@ -75,13 +75,15 @@ const collapsed = ref(true);
 const gridRef = ref();
 const breakPoint = computed<BreakPoint>(() => gridRef.value?.breakPoint);
 
-// 判断是否显示 展开/合并 按钮
+// 判断是否显示 展开/合并 按钮（当一行展示得下就不显示此按钮）
 const showCollapse = computed(() => {
   let show = false;
   props.columns.reduce((prev, current) => {
     prev +=
       (current.search![breakPoint.value]?.span ?? current.search?.span ?? 1) +
       (current.search![breakPoint.value]?.offset ?? current.search?.offset ?? 0);
+    // searchCol 表示每列占比在不同尺寸下的配置，比如：{xs: 1, sm: 1, md: 2, lg: 3, xl: 3}。
+    // breakPoint 会根据屏幕尺寸以及searchCol值获取对应的配置，比如："xs" | "sm" | "md" | "lg" | "xl"。
     if (typeof props.searchCol !== "number") {
       if (prev >= props.searchCol[breakPoint.value]) show = true;
     } else {
